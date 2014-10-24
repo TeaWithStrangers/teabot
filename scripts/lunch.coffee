@@ -16,8 +16,8 @@ gifMe = () ->
 
 module.exports = (robot) ->
 
-  robot.hear /lunch?/i, (msg) ->
-    msg.send gifMe()
-
-  robot.hear /lunch?!/i, (msg) ->
-    msg.send "@channel: " + gifMe()
+  robot.hear /((lunch|food|eat)[!.?]+)/i, (msg) ->
+    resp = ""
+    if msg.match[0].slice(-1) is '!'
+      resp += "@channel: "
+    msg.send resp + gifMe()
